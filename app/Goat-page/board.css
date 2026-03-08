@@ -1,0 +1,149 @@
+/* =========================
+Background video
+========================= */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -10;
+}
+
+/* =========================
+Custom cursor
+========================= */
+.custom-cursor {
+  position: fixed;
+  width: 90px;
+  height: 96px;
+  pointer-events: none;
+  transform: translate(-33%, -8%);
+  z-index: 99999;
+}
+
+/* =========================
+Board wrapper
+========================= */
+.board-wrapper {
+  position: absolute; /* can move by changing top/left */
+  width: 69%;
+  max-width: 900px;
+  z-index: 5;
+}
+
+/* Board image */
+.board-image {
+  width: 97%;
+  height: auto;
+  border-radius: 8px;
+  filter: drop-shadow(0 0 18px rgba(0,0,0,0.75));
+  display: block;
+}
+
+/* =========================
+Hotspots
+========================= */
+.hotspot {
+  position: absolute;
+  width: 10%;
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  z-index: 6;
+  transition: filter 0.2s;
+}
+
+.hotspot:hover {
+  filter: drop-shadow(0 0 12px rgba(45, 0, 90, 0.9));
+}
+
+/* =========================
+Coming soon box
+========================= */
+.coming-soon {
+  position: absolute;
+  width: 10%;
+  aspect-ratio: 1;
+  background-color: rgba(255, 255, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: #000;
+  text-align: center;
+  pointer-events: none;
+  z-index: 6;
+  transform: translate(-50%, -50%) rotate(-2.5deg);
+}
+
+/* =========================
+Logo
+========================= */
+.logo {
+  position: absolute;
+  width: 6%;
+  height: auto;
+  cursor: pointer;
+  z-index: 6;
+  transform: translate(-50%, -50%) rotate(12deg);
+  transition: filter 0.2s;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 15px rgba(160, 0, 255, 0.9));
+}
+
+/* =========================
+Headsplash
+========================= */
+.headsplash {
+  position: absolute;
+  width: 48%;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+  transform: translate(-35%, -45%) rotate(-4deg);
+  filter: drop-shadow(0 0 22px rgba(45, 0, 90, 0.9));
+}
+
+/* =========================
+Video modal
+========================= */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-modal iframe {
+  width: 80%;
+  height: 80%;
+  border: none;
+  border-radius: 10px;
+}
+
+/* =========================
+Mobile responsiveness
+========================= */
+@media (max-width:768px) {
+  .board-wrapper {
+    width: 95%;
+  }
+  .hotspot {
+    width: 12%;
+  }
+  .logo {
+    width: 10%;
+  }
+  .video-modal iframe {
+    width: 95%;
+    height: 50%;
+  }
+}
