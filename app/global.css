@@ -6,5 +6,5 @@ html, body, #__next {
   overflow: auto;
   background: transparent; /* allow video to show */
   font-family: Arial, sans-serif;
-  cursor: none; /* hide system cursor globally */
+  cursor: system; /* hide system cursor globally */
 }
