@@ -1,4 +1,7 @@
-import "./globals.css";
+// app/layout.tsx
+import "./global.css";
+import "./videobackground.css";
+import "./MWTM-Home/home-board.css"; // ← correct relative path
 
 export const metadata = {
   title: "Morbid Besties",

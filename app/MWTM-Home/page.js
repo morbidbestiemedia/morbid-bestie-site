@@ -1,162 +1,214 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import "../global.css";
+import "../videobackground.css";
+import "./home-board.css";
 
-export default function MWTMHomePage() {
+export default function HomeBoardPage() {
+
   const cursorRef = useRef(null);
+  const [modalVideo, setModalVideo] = useState(null);
 
+  /* Planchette follows pointer */
   useEffect(() => {
+
     const move = (e) => {
       if (cursorRef.current) {
-        cursorRef.current.style.left = e.clientX + "px";
-        cursorRef.current.style.top = e.clientY + "px";
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
       }
     };
+
     window.addEventListener("pointermove", move);
     document.body.style.cursor = "none";
+
     return () => {
       window.removeEventListener("pointermove", move);
       document.body.style.cursor = "";
     };
+
   }, []);
 
+  /* Letter Hotspots */
+
+  const letters = [
+
+    { id: "L", x: 372.7, y: 226, rotation: 0.4, video: "https://www.youtube.com/embed/TXN3nCNB9c0" },
+    { id: "I", x: 290, y: 222.5, rotation: 0, video: "https://www.youtube.com/embed/RY2QA4G7LKk" },
+    { id: "Z", x: 450.5, y: 275, rotation: 5, video: "https://www.youtube.com/embed/fB8cL_gquS0" },
+    { id: "A", x: 52.8, y: 236, rotation: -9.5, video: "https://www.youtube.com/embed/68zhhIYlBf4" },
+
+  ];
+
+  /* Moon Hotspots */
+
+  const circles = [
+
+    { x: 531.5, y: 343, size: 50, href: "/Goat-page" },
+    { x: 55.5, y: 343, size: 50, href: "/contact" },
+
+  ];
+
   return (
+
     <>
+
+      {/* Background Video */}
+
       <video
+        className="video-bg"
         src="/videos/my-background.mp4"
         autoPlay
         loop
         muted
         playsInline
-        style={{
-          position: "absolute",
-          top: 1,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: 0,
-        }}
       />
 
-      {/* Header Image */}
-      <img
-        src="/images/MWTM-header.png"
-        alt="MWTM Header"
-        style={{
-          position: "fixed",
-          top: "-8.5%",
-          left: "51%",
-          transform: "translateX(-50%)",
-          width: "610px",
-          height: "auto",
-          zIndex: 1,
-          filter: "drop-shadow(0 0 22px rgba(45, 0, 90, 0.9))",
-        }}
-      />
+      {/* HEADER IMAGE */}
+      <div className="board-wrapper">
 
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 2,
-        }}
-      >
-        <div style={{ position: "relative", display: "inline-block" }}>
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: "20px",
-              boxShadow: "0 0 50px 20px rgba(170,0,255,0.6)",
-              zIndex: 1,
-            }}
-          />
+  <img
+    className="mwtm-header"
+    src="/images/MWTM-header.png"
+    alt="MWTM Header"
+  />
+
+        <div id="center-image">
+
           <img
+            className="center-image"
             src="/images/center-image.png"
-            alt="Ouija"
-            style={{
-              width: "650px",
-              height: "auto",
-              display: "block",
-              borderRadius: "20px",
-              position: "relative",
-              zIndex: 2,
-            }}
+            alt="Ouija Board"
           />
-          <a
-            href="/contact"
-            aria-label="Contact"
-            className="hotspot"
-            style={{
-              position: "absolute",
-              left: "250px",
-              top: "360px",
-              width: "145px",
-              height: "60px",
-              zIndex: 3,
-            }}
-          />
+
+          {/* YES */}
+
           <a
             href="/shop"
-            aria-label="Shop"
-            className="hotspot"
+            className="circle-hotspot"
             style={{
               position: "absolute",
-              left: "130px",
-              top: "25px",
-              width: "90px",
-              height: "90px",
-              zIndex: 3,
+              left: "139.5px",
+              top: "29px",
+              width: "58px",
+              height: "58px",
+              zIndex: 5
             }}
           />
+
+          {/* NO */}
+
+          <a
+            href="https://www.morbidbesties.com"
+            className="circle-hotspot"
+            style={{
+              position: "absolute",
+              left: "444.5px",
+              top: "29px",
+              width: "58px",
+              height: "58px",
+              zIndex: 5
+            }}
+          />
+
+          {/* Letters */}
+
+          {letters.map((h) => (
+
+            <svg
+              key={h.id}
+              width="100"
+              height="100"
+              viewBox="0 0 100 100"
+              onClick={() => setModalVideo(h.video + "?autoplay=1")}
+              style={{
+                position: "absolute",
+                left: `${h.x}px`,
+                top: `${h.y}px`,
+                transform: `rotate(${h.rotation}deg)`,
+                zIndex: 5,
+                cursor: "pointer"
+              }}
+            >
+
+              <rect
+                x="-50"
+                y="-50"
+                width="200"
+                height="200"
+                fill="transparent"
+                pointerEvents="all"
+              />
+
+              <text
+                x="44%"
+                y="46%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize="33.5"
+                fontFamily="Times New Roman, serif"
+                className="letter-hover"
+              >
+                {h.id}
+              </text>
+
+            </svg>
+
+          ))}
+
+          {/* Moon Links */}
+
+          {circles.map((c, i) => (
+
+            <a
+              key={i}
+              href={c.href}
+              className="circle-hotspot"
+              style={{
+                position: "absolute",
+                left: `${c.x}px`,
+                top: `${c.y}px`,
+                width: `${c.size}px`,
+                height: `${c.size}px`,
+                zIndex: 5
+              }}
+            />
+
+          ))}
+
         </div>
+
       </div>
 
-      {/* Cursor - top of planchet matches pointer */}
-<div
-  ref={cursorRef}
-  style={{
-    position: "fixed",
-    top: 0,
-    left: 0,
-    pointerEvents: "none",
-    zIndex: 9999,
-    transform: "translateX(-50%)",   // center horizontally
-  }}
->
-  <img
-    src="/images/planchet.png"
-    alt="Planchet"
-    style={{
-      width: "100px",
-      height: "auto",
-      /* no vertical transform – top edge aligns with cursor */
-    }}
-  />
-</div>
+      {/* Planchette */}
 
-      <style jsx>{`
-        .hotspot {
-          border-radius: 50%;
-          transition: all 0.25s ease;
-          background: transparent;
-        }
-        .hotspot:hover {
-          box-shadow: 0 0 10px rgba(170,0,255,0.8), 0 0 25px rgba(170,0,255,1),
-            0 0 45px rgba(170,0,255,0.8);
-        }
-        html,
-        body {
-          cursor: none;
-        }
-      `}</style>
+      <div ref={cursorRef} className="planchette">
+        <img src="/images/planchet.png" alt="Planchette Cursor" />
+      </div>
+
+      {/* Video Modal */}
+
+      {modalVideo && (
+
+        <div
+          className="video-modal"
+          onClick={() => setModalVideo(null)}
+        >
+
+          <iframe
+            src={modalVideo}
+            title="YouTube Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+
+        </div>
+
+      )}
+
     </>
+
   );
+
 }

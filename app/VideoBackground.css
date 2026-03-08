@@ -1,67 +1,43 @@
-/* make the page see-through so the video shows */
-html, body,
-#__next {
-  background: transparent;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-}
-/* video background */
+/* Full-screen video background */
 .video-bg {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
   z-index: -1;
-  pointer-events: none;
+  pointer-events: none; /* allow clicks through video */
 }
-/* centered container */
-.content {
+
+/* Content container (centered items over video) */
+.content, .board-wrapper {
   position: fixed;
-  inset: 0;
-  z-index: 1;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
-/* Centered Image (Ouija Board) */
-.center-image {
-  display: block;
-  margin: 0 auto;
-  max-width: 50%;
-  max-height: 50%;
-  object-fit: contain;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-/* Glow on hover */
-.center-image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(128, 0, 255, 0.8);
-}
-/* Planchet Cursor */
-.custom-cursor {
+
+/* Planchette cursor */
+.planchette {
   position: fixed;
-  width: 120px;
-  height: 120px;
+  width: 60px; /* adjust cursor size */
+  height: auto;
   pointer-events: none;
-  transform: translate(-50%, -50%);
-  display: block;
-  z-index: 10;
+  transform: translate(-50%, -40%);
+  z-index: 9999;
 }
-/* Responsive Planchet */
+
+/* Responsive planchette */
 @media (max-width: 768px) {
-  .custom-cursor {
-    width: 90px;
-    height: 90px;
+  .planchette {
+    width: 45px;
   }
 }
 @media (max-width: 480px) {
-  .custom-cursor {
-    width: 60px;
-    height: 60px;
+  .planchette {
+    width: 30px;
   }
 }
