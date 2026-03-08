@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import "../global.css";
-import "../videobackground.css";
+import "../VideoBackground.css";
 import "./home-board.css";
 
 export default function HomeBoardPage() {

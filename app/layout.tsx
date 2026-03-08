@@ -1,6 +1,6 @@
 // app/layout.tsx
 import "./global.css";
-import "./videobackground.css";
+import "./VideoBackground.css";
 import "./MWTM-Home/home-board.css"; // ← correct relative path
 
 export const metadata = {
