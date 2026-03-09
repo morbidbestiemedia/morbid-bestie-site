@@ -100,16 +100,16 @@ export default function HomeBoardPage() {
           {/* NO */}
 
           <a
-            href="https://www.morbidbesties.com"
-            className="circle-hotspot"
-            style={{
-              position: "absolute",
-              left: "444.5px",
-              top: "29px",
-              width: "58px",
-              height: "58px",
-              zIndex: 5
-            }}
+  href="/game/index.html"
+  className="circle-hotspot"
+  style={{
+    position: "absolute",
+    left: "444.5px",
+    top: "29px",
+    width: "58px",
+    height: "58px",
+    zIndex: 5,
+  }}
           />
 
           {/* Letters */}
