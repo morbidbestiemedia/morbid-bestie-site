@@ -1,3 +1,4 @@
+<meta name="facebook-domain-verification" content="hcmrw3s8xooppxabnuj1baiwq88o9e" />
 "use client";
 import React, { useEffect, useState } from "react";
 import "./VideoBackground.css";  // fixed
