@@ -1,4 +1,4 @@
-<meta name="facebook-domain-verification" content="hcmrw3s8xooppxabnuj1baiwq88o9e" />
+
 // app/layout.tsx
 import "./global.css";
 import "./VideoBackground.css";
@@ -16,3 +16,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+<meta name="facebook-domain-verification" content="hcmrw3s8xooppxabnuj1baiwq88o9e" />
